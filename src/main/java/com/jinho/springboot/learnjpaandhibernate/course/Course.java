@@ -1,9 +1,22 @@
 package com.jinho.springboot.learnjpaandhibernate.course;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Course {
+
+    @Id
     private long id;
+    @Column(name="name")
     private String name;
+    @Column(name="author")
     private String author;
+
+    public Course() {
+
+    }
 
     public Course(long id, String name, String author) {
         this.id = id;

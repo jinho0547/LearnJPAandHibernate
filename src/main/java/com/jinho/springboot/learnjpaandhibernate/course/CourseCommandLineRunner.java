@@ -1,18 +1,18 @@
-package com.jinho.springboot.learnjpaandhibernate.course.jdbc;
+package com.jinho.springboot.learnjpaandhibernate.course;
 
-import com.jinho.springboot.learnjpaandhibernate.course.Course;
+import com.jinho.springboot.learnjpaandhibernate.course.jdbc.CourseJdbcRepository;
+import com.jinho.springboot.learnjpaandhibernate.course.jpa.CourseJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CourseJdbcCommandLineRunner implements CommandLineRunner {
+public class CourseCommandLineRunner implements CommandLineRunner {
 
-    private final CourseJdbcRepository repository;
-
-    public CourseJdbcCommandLineRunner(CourseJdbcRepository repository) {
-        this.repository = repository;
-    }
+    @Autowired
+    private CourseJpaRepository repository;
+//    @Autowired
+//    private CourseJdbcRepository repository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -22,5 +22,8 @@ public class CourseJdbcCommandLineRunner implements CommandLineRunner {
         repository.insert(new Course(4, "AWS", "Jinho"));
 
         repository.deleteById(1);
+        System.out.println(repository.findById(3));
+
+
     }
 }
